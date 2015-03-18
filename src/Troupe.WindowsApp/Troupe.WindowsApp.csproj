@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EC2FAE6F-6E95-4C50-A636-D90B3F64F620}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Troupe.WindowsApp</RootNamespace>
+    <AssemblyName>TroupeForWindows</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/TroupeForWindows/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <UpdateUrl>http://localhost/TroupeForWindows/</UpdateUrl>
+    <SupportUrl>https://trou.pe</SupportUrl>
+    <ErrorReportUrl>https://trou.pe</ErrorReportUrl>
+    <ProductName>Troupe for Windows</ProductName>
+    <PublisherName>Troupe</PublisherName>
+    <SuiteName>Troupe for Windows</SuiteName>
+    <TrustUrlParameters>true</TrustUrlParameters>
+    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Troupe.WindowsApp.TroupeNotifyProgramMain</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon-logo-64x64.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B7FBCA8295D452E4571C29AEB7AD2C7F3F6432EE</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TroupeTest.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\..\assemblies\Release\log4net\net\4.0\release\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Reactive.Core, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Providers, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Forms, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationState.cs" />
+    <Compile Include="CEFApp.cs" />
+    <Compile Include="TroupeAppContext.cs" />
+    <Compile Include="TroupeClient\AsyncResult.cs" />
+    <Compile Include="TroupeClient\TroupeAuthenticatorFactory.cs" />
+    <Compile Include="TroupeClient\TroupeExtension.cs" />
+    <Compile Include="TroupeClient\Messages\TroupeMessage.cs" />
+    <Compile Include="TroupeClient\Messages\TroupeNotificationMessage.cs" />
+    <Compile Include="TroupeClient\TroupeInvite.cs" />
+    <Compile Include="TroupeClient\TroupeInviteExtractor.cs" />
+    <Compile Include="TroupeClient\TroupeTopic.cs" />
+    <Compile Include="TroupeClient\TroupeTopicExtractor.cs" />
+    <Compile Include="TroupeClient\TroupeUser.cs" />
+    <Compile Include="TroupeClient\TroupeUserExtractor.cs" />
+    <Compile Include="TroupeClient\TroupeUserInvitesMessageListener.cs" />
+    <Compile Include="TroupeClient\TroupeUserSessionMessageListener.cs" />
+    <Compile Include="TroupeClient\TroupeUserTroupesSessionMessageListener.cs" />
+    <Compile Include="TroupeClient\WinRegistrySessionClientDataStore.cs" />
+    <Compile Include="TroupeNotifyProgramMain.cs" />
+    <Compile Include="WinForms\UserPresenceFacade.cs" />
+    <Compile Include="WinForms\BalloonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\BalloonForm.Designer.cs">
+      <DependentUpon>BalloonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TroupeClient\TroupeAuthenticationToken.cs" />
+    <Compile Include="TroupeClient\TroupeAuthenticator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TroupeClient\TroupeSession.cs" />
+    <Compile Include="Helpers\TroupeAuthTokenHandler.cs" />
+    <Compile Include="WinForms\TroupeSplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\TroupeSplashScreen.Designer.cs">
+      <DependentUpon>TroupeSplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\UpdatesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\UpdatesForm.Designer.cs">
+      <DependentUpon>UpdatesForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="WinForms\BalloonForm.resx">
+      <DependentUpon>BalloonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="WinForms\TroupeSplashScreen.resx">
+      <DependentUpon>TroupeSplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\UpdatesForm.resx">
+      <DependentUpon>UpdatesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="build.config" />
+    <None Include="ksoftware-comodo.pfx" />
+    <None Include="Resources\Config\BETA\TroupeForWindows.exe.config" />
+    <None Include="Resources\Config\PRODUCTION\TroupeForWindows.exe.config" />
+    <None Include="NativeLibraries\libcef.lib" />
+    <None Include="NativeLibraries\locales\am.pak" />
+    <None Include="NativeLibraries\locales\ar.pak" />
+    <None Include="NativeLibraries\locales\bg.pak" />
+    <None Include="NativeLibraries\locales\bn.pak" />
+    <None Include="NativeLibraries\locales\ca.pak" />
+    <None Include="NativeLibraries\locales\cs.pak" />
+    <None Include="NativeLibraries\locales\da.pak" />
+    <None Include="NativeLibraries\locales\de.pak" />
+    <None Include="NativeLibraries\locales\el.pak" />
+    <None Include="NativeLibraries\locales\en-GB.pak" />
+    <None Include="NativeLibraries\locales\en-US.pak" />
+    <None Include="NativeLibraries\locales\es-419.pak" />
+    <None Include="NativeLibraries\locales\es.pak" />
+    <None Include="NativeLibraries\locales\et.pak" />
+    <None Include="NativeLibraries\locales\fa.pak" />
+    <None Include="NativeLibraries\locales\fi.pak" />
+    <None Include="NativeLibraries\locales\fil.pak" />
+    <None Include="NativeLibraries\locales\fr.pak" />
+    <None Include="NativeLibraries\locales\gu.pak" />
+    <None Include="NativeLibraries\locales\he.pak" />
+    <None Include="NativeLibraries\locales\hi.pak" />
+    <None Include="NativeLibraries\locales\hr.pak" />
+    <None Include="NativeLibraries\locales\hu.pak" />
+    <None Include="NativeLibraries\locales\id.pak" />
+    <None Include="NativeLibraries\locales\it.pak" />
+    <None Include="NativeLibraries\locales\ja.pak" />
+    <None Include="NativeLibraries\locales\kn.pak" />
+    <None Include="NativeLibraries\locales\ko.pak" />
+    <None Include="NativeLibraries\locales\lt.pak" />
+    <None Include="NativeLibraries\locales\lv.pak" />
+    <None Include="NativeLibraries\locales\ml.pak" />
+    <None Include="NativeLibraries\locales\mr.pak" />
+    <None Include="NativeLibraries\locales\ms.pak" />
+    <None Include="NativeLibraries\locales\nb.pak" />
+    <None Include="NativeLibraries\locales\nl.pak" />
+    <None Include="NativeLibraries\locales\pl.pak" />
+    <None Include="NativeLibraries\locales\pt-BR.pak" />
+    <None Include="NativeLibraries\locales\pt-PT.pak" />
+    <None Include="NativeLibraries\locales\ro.pak" />
+    <None Include="NativeLibraries\locales\ru.pak" />
+    <None Include="NativeLibraries\locales\sk.pak" />
+    <None Include="NativeLibraries\locales\sl.pak" />
+    <None Include="NativeLibraries\locales\sr.pak" />
+    <None Include="NativeLibraries\locales\sv.pak" />
+    <None Include="NativeLibraries\locales\sw.pak" />
+    <None Include="NativeLibraries\locales\ta.pak" />
+    <None Include="NativeLibraries\locales\te.pak" />
+    <None Include="NativeLibraries\locales\th.pak" />
+    <None Include="NativeLibraries\locales\tr.pak" />
+    <None Include="NativeLibraries\locales\uk.pak" />
+    <None Include="NativeLibraries\locales\vi.pak" />
+    <None Include="NativeLibraries\locales\zh-CN.pak" />
+    <None Include="NativeLibraries\locales\zh-TW.pak" />
+    <EmbeddedResource Include="NetSparkle_DSA.pub" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\libraries\libCometD.NET\cometd.csproj">
+      <Project>{CE60C8C6-3F04-447B-946C-D22397E39EC6}</Project>
+      <Name>cometd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libraries\netsparkle\NetSparkle\NetSparkle2010.csproj">
+      <Project>{74635A21-2BAD-4522-AB95-E3E5703CD301}</Project>
+      <Name>NetSparkle2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libraries\libSuperNotifyIcon\SuperNotifyIcon\SuperNotifyIcon.csproj">
+      <Project>{7917205F-E357-4793-928C-4193D51C2F73}</Project>
+      <Name>SuperNotifyIcon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libraries\Xilium.CefGlue\CefGlue.WindowsForms\CefGlue.WindowsForms.csproj">
+      <Project>{679AF14D-8FF5-4608-BFF8-EC1A7DED04A4}</Project>
+      <Name>CefGlue.WindowsForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libraries\Xilium.CefGlue\CefGlue\CefGlue.csproj">
+      <Project>{703FF300-34B9-48D4-A5D6-E741F48D5F95}</Project>
+      <Name>CefGlue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Troupe.Common\Troupe.Common.csproj">
+      <Project>{2754D749-0105-4D09-A6C1-E3E8BDF8D2AD}</Project>
+      <Name>Troupe.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Troupe.WindowsApp.Auth.Chromium\Troupe.WindowsApp.Auth.Chromium.csproj">
+      <Project>{311984DF-EB92-4B01-B4AD-C7E73A13E271}</Project>
+      <Name>Troupe.WindowsApp.Auth.Chromium</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\icon-logo-64x64.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NativeLibraries\d3dcompiler_43.dll" />
+    <Content Include="NativeLibraries\d3dcompiler_46.dll" />
+    <Content Include="NativeLibraries\ffmpegsumo.dll" />
+    <Content Include="NativeLibraries\icudt.dll" />
+    <Content Include="NativeLibraries\libcef.dll" />
+    <Content Include="NativeLibraries\libEGL.dll" />
+    <Content Include="NativeLibraries\libGLESv2.dll" />
+    <Content Include="Resources\Close.bmp" />
+    <Content Include="Resources\icon-logo-connected-unread.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-logo-connected.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-logo-disconnected.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Resources\FavoriteStar_FrontFacing_16x16_72.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program Files (x86)\Windows Kits\8.0\bin\x86\signtool.exe" sign /f "$(SolutionDir)Troupe.WindowsApp.NetSparkle\ksoftware-comodo.pfx" /p r3k3n44r "$(TargetPath)"
+rem copy "$(ProjectDir)NativeLibraries\*"  "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

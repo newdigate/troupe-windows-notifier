@@ -1,0 +1,274 @@
+<project name="Troupe for Windows Build" default="rebuild">
+  <property name="targetEnvironment" value="BETA" unless="${property::exists('targetEnvironment')}"/>
+  <property name="configuration" value="Debug" unless="${property::exists('configuration')}"/>
+
+  <!-- Production build -->
+  <!--property name="targetEnvironment" value="PRODUCTION"/>
+  <property name="configuration" value="Release"/-->
+
+  <!-- Increment VERSION_MAJOR, VERSION_MINOR or VERSION_REVISION to trigger software autoupdate -->
+  <property name="VERSION_MAJOR" value="0"/>
+  <property name="VERSION_MINOR" value="9"/>
+  <property name="VERSION_REVISION" value="18"/>
+
+  <!-- DON'T change VERSION_ITERATION as it will cause software update but msi installer will fail because it doesnt check the iteration number and will claim the software is already installed -->
+  <property name="VERSION_ITERATION" value="0"/>
+
+  <property name="VERSION" value="${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_REVISION}.${VERSION_ITERATION}"/>
+  <property name="current.dir" value="${directory::get-current-directory()}" />
+  <property name="current.dir.parent" value="${directory::get-parent-directory(current.dir)}" />
+  <property name="rootDir" value="${current.dir}"/>
+  <property name="externalAssembliesDir" value="${rootDir}\assemblies"/>
+  <property name="baseDir" value="${rootDir}\src\"/>
+  <property name="libararyProjectsPath" value="${rootDir}\libraries"/>
+  <property name="buildDir" value="${rootDir}\build"/>
+  <property name="buildLibraries" value="${buildDir}\lib"/>
+  <property name="buildArtifactsDir" value="${buildDir}\Artifacts"/>
+  <property name="projectTroupeWindowsAppPath" value="${baseDir}\Troupe.WindowsApp"/>
+  <property name="wix.dir" value="C:\Program Files (x86)\WiX Toolset v3.7\bin" />
+  <property name="buildLibrariesNAntContribDLLPath" value="${buildLibraries}\nantcontrib-0.92\NAnt.Contrib.Tasks.dll"/>
+  <property name="troupeForWindowsInstallerProjectPath" value="${baseDir}\Troupe.WindowsApp.Installer"/>
+  <property name="troupeForWindowsInstallerOutputPath" value="${troupeForWindowsInstallerProjectPath}\${targetEnvironment}"/>
+  <loadtasks assembly="${buildLibraries}\Microsoft.Tools.WindowsInstallerXml.NAntTasks.dll" />
+  <loadtasks assembly="${buildLibrariesNAntContribDLLPath}" />
+
+  <target name="clean" description="Delete all previously compiled binaries.">
+    <delete>
+      <fileset basedir="${baseDir}" >
+        <include name="**/bin/**" />
+        <include name="**/obj/**" />
+        <include name="**/*.suo" />
+        <include name="**/*.user" />
+        <include name="**/*.wixobj" />
+      </fileset>
+    </delete>
+    <delete>
+      <fileset basedir="${libararyProjectsPath}" >
+        <include name="**/bin/**" />
+        <include name="**/obj/**" />
+        <include name="**/*.suo" />
+        <include name="**/*.user" />
+      </fileset>
+    </delete>
+    <delete>
+      <fileset basedir="${buildArtifactsDir}" >
+        <include name="**/*.*" />
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="encryptSessionConfig">
+
+    <copy overwrite="true" todir="${buildLibraries}\TroupeConfigEncrypter" verbose="true"  >
+      <fileset basedir="${baseDir}\Troupe.ServerConfig\${targetEnvironment}">
+        <include name="Troupe.WindowsApp.ConfigEncrypter.exe.config" ></include>
+      </fileset>
+    </copy>
+
+    <exec program="${buildLibraries}\TroupeConfigEncrypter\Troupe.WindowsApp.ConfigEncrypter.exe" commandline="${buildArtifactsDir}\EncryptedConfig.txt" output="${buildArtifactsDir}\EncryptedConfig.txt"/>
+
+    <loadfile file="${buildArtifactsDir}\EncryptedConfig.txt" property="ENCRYPTEDSESSIONCONFIG"/>
+
+    <loadfile file="${projectTroupeWindowsAppPath}\build.config" property="build.config">
+      <filterchain>
+        <replacetokens>
+          <token key="ENCRYPTEDSESSIONCONFIG" value="${ENCRYPTEDSESSIONCONFIG}" />
+        </replacetokens>
+      </filterchain>
+    </loadfile>
+
+    <echo file="${projectTroupeWindowsAppPath}\app.config">${build.config}</echo>
+  </target>
+
+  <target name="createAssemblyInfos" description="Build Assemblyinfo.cs">
+    <property name="log4NetAssemblyPath" value="${externalAssembliesDir}\Release\log4net\net\4.0\release"/>
+    <asminfo output="${projectTroupeWindowsAppPath}\Properties\AssemblyInfo.cs" language="CSharp" failonerror="true" >
+      <imports>
+        <import namespace="System.Reflection" />
+        <import namespace="System.Runtime.InteropServices" />
+        <import namespace="log4net.Config" />
+      </imports>
+      <attributes>
+        <attribute type="AssemblyTitleAttribute" value="Troupe.WindowsApp" />
+        <attribute type="AssemblyDescriptionAttribute" value="Troupe for Windows" />
+        <attribute type="AssemblyConfigurationAttribute" value="" />
+        <attribute type="AssemblyCompanyAttribute" value="Troupe" />
+        <attribute type="AssemblyProductAttribute" value="Troupe for Windows" />
+        <attribute type="AssemblyCopyrightAttribute" value="Copyright ©  2013" />
+        <attribute type="AssemblyTrademarkAttribute" value="" />
+        <attribute type="AssemblyCultureAttribute" value="" />
+
+        <attribute type="ComVisibleAttribute" value="false" />
+        <attribute type="GuidAttribute" value="ee64b0c1-f278-48ec-8667-11415f46e120" />
+        <attribute type="AssemblyVersionAttribute" value="${VERSION}" />
+        <attribute type="AssemblyFileVersionAttribute" value="${VERSION}" />
+        <attribute type="XmlConfiguratorAttribute" value="Watch=true" asis="true" />
+      </attributes>
+      <references>
+        <include name="${log4NetAssemblyPath}\log4net.dll" />
+      </references>
+    </asminfo>
+  </target>
+
+  <target name="updateWIXInstaller" description="Build Assemblyinfo.cs">
+    <script language="C#" prefix="GUID">
+      <code>
+        <![CDATA[
+[Function("GUIDGen")]
+public static string GUIDGen( )
+{
+return Guid.NewGuid().ToString("D").ToUpper();
+} ]]>
+      </code>
+    </script>
+
+    <if test="${targetEnvironment=='PRODUCTION'}">
+      <property name="UpgradeCode" value="3273beee-c589-4f3a-b50c-f3cf3abfb630"/> <!-- keep constant to allow unistall of previous versions-->
+      <property name="ProductName" value="Troupe for Windows"/>
+      <property name="TroupeForWindowsFolder" value="Troupe for Windows"/>
+      <property name="TroupeForWindowsExeName" value="TroupeForWindows.exe"/>
+    </if>
+
+    <if test="${targetEnvironment!='PRODUCTION'}">
+      <property name="UpgradeCode" value="0fdb1f1a-d8be-4eea-8300-31791da51fce"/> <!-- keep constant to allow unistall of previous versions-->
+      <property name="ProductName" value="Troupe for Windows Beta"/>
+      <property name="TroupeForWindowsFolder" value="Troupe for Windows Beta"/>
+      <property name="TroupeForWindowsExeName" value="TroupeForWindowsBeta.exe"/>
+    </if>
+
+    <loadfile file="${troupeForWindowsInstallerProjectPath}\TroupeForWindows.wxs" property="TroupeForWindows.wxs">
+      <filterchain>
+        <replacetokens>
+          <token key="VERSION" value="${VERSION}" />
+          <token key="UpgradeCode" value="${UpgradeCode}" />
+          <token key="PackageCode" value="${GUID::GUIDGen()}" />
+          <token key="ProductName" value="${ProductName}" />
+          <token key="TroupeForWindowsFolder" value="${TroupeForWindowsFolder}" />
+          <token key="TroupeForWindowsExeName" value="${TroupeForWindowsExeName}" />
+        </replacetokens>
+      </filterchain>
+    </loadfile>
+
+    <echo file="${troupeForWindowsInstallerProjectPath}\TroupeForWindows-${VERSION}.wxs">${TroupeForWindows.wxs}</echo>
+  </target>
+
+  <target name="build" description="Build all targets.">
+    <call target="clean"/>
+    <call target="encryptSessionConfig"/>
+    <call target="createAssemblyInfos"/>
+    <call target="updateWIXInstaller"/>
+    <call target="build.TroupeForWindows"/>
+    <call target="configure"/>
+    <call target="buildmsi"/>
+  </target>
+
+  <target name="rebuild" depends="build" />
+
+  <target name="build.TroupeForWindows">
+    <property name="netSparklePath" value="${baseDir}\Troupe.WindowsApp.NetSparkle"/>
+    <property name="libararyCefGluePath" value="${libararyProjectsPath}\Xilium.CefGlue\CefGlue"/>
+    <property name="libararyCefGlueProject" value="${libararyCefGluePath}\CefGlue.csproj"/>
+    <property name="libararyCefGlueWindowsFormsPath" value="${libararyProjectsPath}\Xilium.CefGlue\CefGlue.WindowsForms"/>
+    <property name="libararyCefGlueWindowsFormsProject" value="${libararyCefGlueWindowsFormsPath}\CefGlue.WindowsForms.csproj"/>
+    <property name="libararySparklePath" value="${libararyProjectsPath}\netsparkle\NetSparkle"/>
+    <property name="libararySparkleProject" value="${libararySparklePath}\NetSparkle2010.csproj"/>
+    <property name="libararyNetSparkleDSAHelperPath" value="${libararyProjectsPath}\netsparkle\NetSparkleDSAHelper"/>
+    <property name="libararyNetSparkleDSAHelperProject" value="${libararyNetSparkleDSAHelperPath}\NetSparkleDSAHelper.csproj"/>
+    <property name="libararyCometDNetPath" value="${libararyProjectsPath}\libCometD.NET"/>
+    <property name="libararyCometDNetProject" value="${libararyCometDNetPath}\cometd.csproj"/>
+    <property name="libararySuperNotifyIconPath" value="${libararyProjectsPath}\libSuperNotifyIcon\SuperNotifyIcon\"/>
+    <property name="libararySuperNotifyIconProject" value="${libararySuperNotifyIconPath}\SuperNotifyIcon.csproj"/>
+    <property name="projectTroupeCommonPath" value="${baseDir}\Troupe.Common"/>
+    <property name="projectTroupeCommonProject" value="${projectTroupeCommonPath}\Troupe.Common.csproj"/>
+    <property name="projectTroupeWindowsAppAuthChromiumPath" value="${baseDir}\Troupe.WindowsApp.Auth.Chromium"/>
+    <property name="projectTroupeWindowsAppAuthChromiumProject" value="${projectTroupeWindowsAppAuthChromiumPath}\Troupe.WindowsApp.Auth.Chromium.csproj"/>
+    <property name="projectTroupeWindowsAppProject" value="${projectTroupeWindowsAppPath}\Troupe.WindowsApp.csproj"/>
+
+    <property name="troupeForWindowsProjectDir" value="${baseDir}/Troupe.WindowsApp"/>
+    <property name="troupeForWindowsOutputPath" value="${troupeForWindowsProjectDir}/bin/${configuration}"/>
+    <property name="troupeForWindowsExecutableName" value="TroupeForWindows.exe"/>
+    <property name="troupeForWindowsExecutablePath" value="${troupeForWindowsOutputPath}/${troupeForWindowsExecutableName}"/>
+
+    <msbuild project="${libararyCefGlueProject}" failonerror="True">
+      <property name="Configuration" value="${configuration}"/>
+      <property name="SolutionDir" value="${baseDir}\"/>
+    </msbuild>
+    <msbuild project="${libararyCefGlueWindowsFormsProject}" failonerror="True">
+      <property name="SolutionDir" value="${baseDir}\"/>
+      <property name="Configuration" value="${configuration}"/>
+    </msbuild>
+    <msbuild project="${libararySparkleProject}" failonerror="True">
+      <property name="SolutionDir" value="${baseDir}\"/>
+      <property name="Configuration" value="${configuration}"/>
+    </msbuild>
+    <msbuild project="${libararyNetSparkleDSAHelperProject}" failonerror="True">
+      <property name="SolutionDir" value="${baseDir}\"/>
+      <property name="Configuration" value="${configuration}"/>
+    </msbuild>
+    <msbuild project="${libararyCometDNetProject}" failonerror="True">
+      <property name="SolutionDir" value="${baseDir}\"/>
+      <property name="Configuration" value="${configuration}"/>
+    </msbuild>
+    <msbuild project="${libararySuperNotifyIconProject}" failonerror="True">
+      <property name="SolutionDir" value="${baseDir}\"/>
+      <property name="Configuration" value="${configuration}"/>
+    </msbuild>
+    <msbuild project="${projectTroupeCommonProject}" failonerror="True">
+      <property name="SolutionDir" value="${baseDir}\"/>
+      <property name="Configuration" value="${configuration}"/>
+    </msbuild>
+    <msbuild project="${projectTroupeWindowsAppAuthChromiumProject}" failonerror="True">
+      <property name="SolutionDir" value="${baseDir}\"/>
+      <property name="Configuration" value="${configuration}"/>
+    </msbuild>
+    <msbuild project="${projectTroupeWindowsAppProject}" failonerror="True" >
+      <property name="SolutionDir" value="${baseDir}\"/>
+      <property name="Configuration" value="${configuration}"/>
+    </msbuild>
+  </target>
+
+  <target name="configure">
+    <if test="${targetEnvironment=='PRODUCTION'}" >
+      <echo message="PRODUCTION ENVIRIONMENT build detected"/>
+    </if>
+
+    <echo message="COPY ${projectTroupeWindowsAppPath}\Resources\Config\${targetEnvironment}\TroupeForWindows.exe.config -> ${projectTroupeWindowsAppPath}\bin\${configuration}\TroupeForWindows.exe.config"></echo>
+    <copy file="${projectTroupeWindowsAppPath}\Resources\Config\${targetEnvironment}\TroupeForWindows.exe.config" tofile="${projectTroupeWindowsAppPath}\bin\${configuration}\TroupeForWindows.exe.config" overwrite="True"/>
+  </target>
+
+  <target name="buildmsi">
+
+
+    <if test="${targetEnvironment!='PRODUCTION'}">
+      <property name="TroupeForWindowsExeName" value="TroupeForWindowsBeta.exe"/>
+      <copy file="${troupeForWindowsExecutablePath}" tofile="${troupeForWindowsOutputPath}\${TroupeForWindowsExeName}" overwrite="true"/>
+      <copy file="${troupeForWindowsExecutablePath}.config" tofile="${troupeForWindowsOutputPath}\${TroupeForWindowsExeName}.config" overwrite="true"/>
+    </if>
+
+    <property name="troupeForWindowsMSIInstallerName" value="TroupeForWindows.msi"/>
+    <property name="troupeForWindowsMSIIntermediateName" value="TroupeForWindows.wixobj"/>
+    <property name="troupeForWindowsMSIInstallerPath" value="${troupeForWindowsInstallerOutputPath}\${troupeForWindowsMSIInstallerName}"/>
+    <property name="troupeForWindowsMSIInstallerDestinationPath" value="${buildArtifactsDir}\${targetEnvironment}\TroupeForWindows-${VERSION}.msi"/>
+
+    <candle out="${troupeForWindowsInstallerOutputPath}\TroupeForWindows.wixobj" exedir="${wix.dir}">
+      <defines>
+        <define name="Configuration" value="${configuration}" />
+      </defines>
+      <sources>
+        <include name="${troupeForWindowsInstallerProjectPath}\TroupeForWindows-${VERSION}.wxs" />
+      </sources>
+    </candle>
+    <exec program="${wix.dir}\light.exe" commandline="-b &quot;${troupeForWindowsInstallerProjectPath}&quot; -out &quot;${troupeForWindowsMSIInstallerPath}&quot; &quot;${troupeForWindowsInstallerOutputPath}\TroupeForWindows.wixobj&quot; -ext WiXNetFxExtension -ext WiXUtilExtension"/>
+    <exec workingdir="${netSparklePath}" verbose="true" program="C:\Program Files (x86)\Windows Kits\8.0\bin\x86\signtool.exe" commandline="sign /f ksoftware-comodo.pfx -p r3k3n44r &quot;..\Troupe.WindowsApp.Installer\${targetEnvironment}\TroupeForWindows.msi&quot;"/>
+    <copy file="${troupeForWindowsMSIInstallerPath}" tofile="${troupeForWindowsMSIInstallerDestinationPath}" overwrite="True"/>
+    <call target="generateSignature" />
+  </target>
+
+  <target name="generateSignature">
+    <echo message="lib\NetSparkleDSAHelper\NetSparkleDSAHelper.exe /sign_update ${troupeForWindowsMSIInstallerDestinationPath} ${baseDir}\Troupe.WindowsApp.NetSparkle\NetSparkle_DSA.priv"/>
+    <exec program="lib\NetSparkleDSAHelper\NetSparkleDSAHelper.exe"
+          commandline="/sign_update &quot;${troupeForWindowsMSIInstallerDestinationPath}&quot; &quot;${baseDir}\Troupe.WindowsApp.NetSparkle\NetSparkle_DSA.priv&quot;"
+          output="${buildArtifactsDir}\signature.txt"/>
+  </target>
+
+</project>

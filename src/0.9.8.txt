@@ -1,0 +1,6 @@
+* menu update and adding and removing invites dynamically
+* updated menu layout
+* fixed bug where new troupes were not appearing in context menu
+* added updates and patches to troupe conversations
+* Adding and removing troupes dynamically when user accepts invite or exits an existing troupe
+* Signed msi installer package

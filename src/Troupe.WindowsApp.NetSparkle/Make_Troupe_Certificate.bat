@@ -1,0 +1,2 @@
+"C:\Program Files (x86)\Windows Kits\8.0\bin\x86\makecert.exe"  -sv Troupe.pvk -n "cn=Troupe" troupe.cer -b 01/01/2013 -e 01/01/2028 -r
+"C:\Program Files (x86)\Windows Kits\8.0\bin\x86\PVK2PFX.exe" -pvk Troupe.pvk -spc troupe.cer

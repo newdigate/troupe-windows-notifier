@@ -1,0 +1,9 @@
+updated version		0.9.7
+cleaned up logging;
+#15: Give the login window a frame
+#21: State is not consistent between the client and the server
+#22: On a fresh install of Win7, with only IE9 installed and no chrome/firefox clicking links crashes the app
+#13: Make the toolbar menu appear for left and right menu clicks
+#16: Sign the application with a strong name, so that people don't get a scary message about an unidentified publisher
+#20: Notifications do not open the browser when clicked;
+Removed unnecessary intermediate software update dialog.

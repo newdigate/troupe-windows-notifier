@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Product Id="*" Name="@ProductName@" Language="1033" Version="@VERSION@" Manufacturer="Troupe" UpgradeCode="@UpgradeCode@" >
+
+        <Package Compressed="yes" />
+
+        <Media Id="1" Cabinet="TroupeForWindows.cab" EmbedCab="yes" CompressionLevel="high" />
+
+      <MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="A later version of Troupe for Windows is already installed. Setup will now exit." AllowSameVersionUpgrades="yes" />
+
+      <Property Id="NETFRAMEWORK40">
+        <RegistrySearch Id="NetFramework40" Root="HKLM" Key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" Name="Install" Type="raw" />
+      </Property>
+      
+      <Directory Name="SourceDir" Id="TARGETDIR">
+        <Directory Name="ProgramFilesFolder" Id="ProgramFilesFolder">
+          <Directory Name="@TroupeForWindowsFolder@" Id="TroupeForWindowsFolder">
+            <Directory Name="locales" Id="_3">
+              <Component Id="_1" Guid="9EF0B969-E518-4E46-987F-47570745A589">
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\am.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\ar.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\bg.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\bn.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\ca.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\cs.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\da.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\de.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\el.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\en-GB.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\en-US.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\es.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\es-419.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\et.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\fa.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\fi.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\fil.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\fr.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\gu.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\he.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\hi.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\hr.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\hu.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\id.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\it.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\ja.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\kn.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\ko.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\lt.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\lv.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\ml.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\mr.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\ms.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\nb.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\nl.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\pl.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\pt-BR.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\pt-PT.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\ro.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\ru.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\sk.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\sl.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\sr.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\sv.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\sw.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\ta.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\te.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\th.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\tr.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\uk.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\vi.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\zh-CN.pak" />
+                <File Source="..\Troupe.WindowsApp\NativeLibraries\locales\zh-TW.pak" />
+              </Component>
+            </Directory>
+            <Directory Name="Resources" Id="_4">
+              <Component Id="_5" Guid="aafc8a88-c35b-4248-9d0b-fc9688fa7de8">
+                <File Source="..\Troupe.WindowsApp\Resources\icon-logo-connected-unread.ico" />
+                <File Source="..\Troupe.WindowsApp\Resources\icon-logo-connected.ico" />
+                <File Source="..\Troupe.WindowsApp\Resources\icon-logo-disconnected.ico" />
+                <File Source="..\Troupe.WindowsApp\Resources\FavoriteStar_FrontFacing_16x16_72.png" />
+              </Component>   
+            </Directory>
+            <Component Id="_2" Guid="3C67513D-01DD-4637-8A68-80971EB9504F">
+              <File Source="..\..\libraries\netsparkle\NetSparkle\$(var.Configuration)\lib\net40-full\AppLimit.NetSparkle.Net40.dll" />
+              <File Source="..\..\libraries\libCometD.NET\bin\$(var.Configuration)\cometd2.dll" />
+              <File Source="..\Troupe.WindowsApp\NativeLibraries\d3dcompiler_43.dll" />
+              <File Source="..\Troupe.WindowsApp\NativeLibraries\d3dcompiler_46.dll" />
+              <File Source="..\Troupe.WindowsApp\NativeLibraries\ffmpegsumo.dll" />
+              <File Source="..\Troupe.WindowsApp\Resources\icon-logo-64x64.ico" />
+              <File Source="..\Troupe.WindowsApp\NativeLibraries\icudt.dll" />
+              <File Source="..\Troupe.WindowsApp\NativeLibraries\libcef.dll" />
+              <File Source="..\Troupe.WindowsApp\NativeLibraries\libcef.lib" />
+              <File Source="..\Troupe.WindowsApp\NativeLibraries\libEGL.dll" />
+              <File Source="..\Troupe.WindowsApp\NativeLibraries\libGLESv2.dll" />
+              <File Id="TroupeForWindowsExecutable" Source="..\Troupe.WindowsApp\bin\$(var.Configuration)\@TroupeForWindowsExeName@" />
+              <File Source="..\Troupe.WindowsApp\bin\$(var.Configuration)\@TroupeForWindowsExeName@.config" />
+              <File Source="..\..\assemblies\Release\log4net\net\4.0\release\log4net.dll" />
+              <File Source="..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.Core.dll" />
+              <File  Source="..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.Interfaces.dll" />
+              <File Source="..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.Linq.dll" />
+              <File Source="..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.PlatformServices.dll" />
+              <File Source="..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.Providers.dll" />
+              <File Source="..\..\assemblies\Release\Reactive Extensions\v2.0\Binaries\.NETFramework\v4.0\System.Reactive.Windows.Forms.dll" />
+              <File Source="..\Troupe.WindowsApp.Auth.Chromium\bin\$(var.Configuration)\Trou.pe.NotificationApp.Auth.Chromium.dll" />
+              <File Source="..\Troupe.Common\bin\$(var.Configuration)\Troupe.Common.dll" />
+              <File Source="..\..\libraries\Xilium.CefGlue\CefGlue\bin\$(var.Configuration)\Xilium.CefGlue.dll" />
+              <File Source="..\..\libraries\Xilium.CefGlue\CefGlue.WindowsForms\bin\$(var.Configuration)\Xilium.CefGlue.WindowsForms.dll" />
+              <File Source="..\..\libraries\libSuperNotifyIcon\SuperNotifyIcon\bin\$(var.Configuration)\Zhwang.SuperNotifyIcon.dll" />
+            </Component>
+          </Directory>
+        </Directory>
+
+        <Directory Id="ProgramMenuFolder"/>
+        <Directory Id="StartupFolder" />
+        <Directory Id="DesktopFolder" />
+      </Directory>
+      <DirectoryRef Id="ProgramMenuFolder">
+        <Component Id="ApplicationShortcut" Guid="2B60E1DC-1CBF-461E-91E4-31E380F3C0FD">
+          <Shortcut Id="ApplicationStartMenuShortcut"
+                    Name="@ProductName@"
+                    Description="@ProductName@"
+                    Target="[TroupeForWindowsFolder]@TroupeForWindowsExeName@"
+                    WorkingDirectory="APPLICATIONROOTDIRECTORY"
+                    Directory="ProgramMenuFolder"
+                    Icon="troupe.ico"
+                    IconIndex="0" />
+
+          <Shortcut Id="StartupShortcut"
+                    Name="@ProductName@"
+                    Description="@ProductName@"
+                    Target="[TroupeForWindowsFolder]@TroupeForWindowsExeName@"
+                    WorkingDirectory="APPLICATIONROOTDIRECTORY"
+                    Directory="StartupFolder"
+                    Icon="troupe.ico"
+                    IconIndex="0" />
+
+          <Shortcut Id="DesktopShortcut"
+                    Name="@ProductName@"
+                    Description="@ProductName@"
+                    Target="[TroupeForWindowsFolder]@TroupeForWindowsExeName@"
+                    WorkingDirectory="APPLICATIONROOTDIRECTORY"
+                    Directory="DesktopFolder"
+                    Icon="troupe.ico"
+                    IconIndex="0" />
+
+          <RemoveFolder Id="TroupeForWindowsFolder" On="uninstall"/>
+          <RegistryValue Root="HKCU" Key="Software\Troupe\@TroupeForWindowsFolder@" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+        </Component>
+      </DirectoryRef>
+
+        <Feature Id="_1" Level="1">
+            <ComponentRef Id="_1" />
+            <ComponentRef Id="_2" />
+            <ComponentRef Id="_5" />
+            <ComponentRef Id="ApplicationShortcut" />
+        </Feature>
+        <UI />
+
+      <Icon Id="troupe.ico" SourceFile="..\Troupe.WindowsApp\Resources\icon-logo-64x64.ico"/>
+      <Property Id="ARPPRODUCTICON" Value="troupe.ico" />
+
+      <CustomAction Id="StartTroupeAction" ExeCommand="" FileKey="TroupeForWindowsExecutable" Return="asyncNoWait"/>
+
+      <Property Id="WixShellExecTarget" Value="http://update.trou.pe/windows/prerequisites.html" />
+      <CustomAction Id="InstallNETFRAMEWORK40FULL" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="no" Return="ignore"  />
+
+      <InstallExecuteSequence>
+        <Custom Action="StartTroupeAction" After="InstallFinalize" />
+        <Custom Action="InstallNETFRAMEWORK40FULL" Before="LaunchConditions">NOT NETFRAMEWORK40</Custom>
+      </InstallExecuteSequence>
+
+    </Product>
+</Wix>

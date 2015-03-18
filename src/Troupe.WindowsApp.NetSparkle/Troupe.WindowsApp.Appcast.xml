@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Troupe for Windows</title>
+    <link>http://update.trou.pe/windows/beta/Troupe.WindowsApp.Appcast.xml</link>
+    <description>Troupe for Windows Messenger</description>
+    <language>en</language>
+
+    <item>
+      <title>Version 0.9.9.0 (beta update 4)</title>  
+      <sparkle:releaseNotesLink>http://update.trou.pe/windows/beta/version.html</sparkle:releaseNotesLink>
+      <pubDate>Sat, 07 Sept 2013 13:40:11 +0000</pubDate>
+      <enclosure url="http://update.trou.pe/windows/beta/TroupeForWindows-0.9.9.msi"
+                 sparkle:version="0.9.9.0"
+                 sparkle:dsaSignature="b0+XPp6iYjxt9w7XsKdmexoMbKE8Z2pHN/0suUmlQvFP9Ik0gqvIEw=="
+                 length="19689472"
+                 type="application/octet-stream" />
+    </item>
+    <item>
+      <title>Version 0.9.8.0 (beta update 3)</title>
+      <sparkle:releaseNotesLink>http://update.trou.pe/windows/beta/0.9.8.txt</sparkle:releaseNotesLink>
+      <pubDate>Fri, 06 Sept 2013 13:40:11 +0000</pubDate>
+      <enclosure url="http://update.trou.pe/windows/beta/TroupeForWindows-0.9.8.msi"
+                 sparkle:version="0.9.8.0"
+                 sparkle:dsaSignature="FUdgb8TQgdCZn61hzLjNVYYj8v0/JpMVGMmmNDsDzjt9tf2I9zlV/Q=="
+                 length="19114496"
+                 type="application/octet-stream" />
+    </item>
+    <item>
+      <title>Version 0.9.7.0 (first beta update 2)</title>
+      <sparkle:releaseNotesLink>http://update.trou.pe/windows/beta/0.9.7.txt</sparkle:releaseNotesLink>
+      <pubDate>Sun, 01 Sept 2013 13:40:11 +0000</pubDate>
+      <enclosure url="http://update.trou.pe/windows/beta/TroupeForWindows-0.9.7.msi"
+                 sparkle:version="0.9.7.0"
+                 sparkle:dsaSignature="VJpXu9SI5vYlqGcct9TMYKkRlr8oc4n4p7E1H/Eo7xiMFAJcgPP3/A=="
+                 length="19104256"
+                 type="application/octet-stream" />
+    </item>
+    <item>
+      <title>Version 0.9.6.0 (first beta update 1)</title>
+      <sparkle:releaseNotesLink>http://update.trou.pe/windows/beta/0.9.6.txt</sparkle:releaseNotesLink>
+      <pubDate>Wed, 28 Aug 2013 23:20:11 +0000</pubDate>
+      <enclosure url="http://update.trou.pe/windows/beta/TroupeForWindows-0.9.6.msi"
+                 sparkle:version="0.9.6.0"
+                 sparkle:dsaSignature="P3m6ibtahYwvx1EtBWYW3FOTYSJggbjgdJPBw1aEL1MLN7yhlQxeKg=="
+                 length="19098112"
+                 type="application/octet-stream" />
+    </item>
+    <item>
+      <title>Version 0.9.5.0 (first beta)</title>
+      <sparkle:releaseNotesLink>http://update.trou.pe/windows/beta/0.9.5.txt</sparkle:releaseNotesLink>
+      <pubDate>Mon, 26 Aug 2013 12:20:11 +0000</pubDate>
+      <enclosure url="http://update.trou.pe/windows/beta/TroupeForWindows-0.9.5.msi" 
+                 sparkle:version="0.9.5.0"
+                 sparkle:dsaSignature="HxjmIDK4YR4S35JrMa7bnMfI3LkoVsqD/p6sQpzo+B3WRMcbko+VUw=="
+                 length="19003392"          
+                 type="application/octet-stream" /> 
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,35 @@
+<h1>Troupe for Windows 0.9.9</h1>
+<ul>
+<li> menu doesnt display headings when there are no items in the category</li>
+<li> msi software updates package now installs using passive mode </li>
+</ul>
+
+<h1>Troupe for Windows 0.9.8</h1>
+<ul>
+<li> menu update and adding and removing invites dynamically</li>
+<li> updated menu layout</li>
+<li> fixed bug where new troupes were not appearing in context menu</li>
+<li> added updates and patches to troupe conversations</li>
+<li> Adding and removing troupes dynamically when user accepts invite or exits an existing troupe</li>
+<li> Signed msi installer package</li>
+</ul>
+
+<h1>Troupe for Windows 0.9.7</h1>
+<ul>
+<li> cleaned up logging;</li>
+<li>#15: Give the login window a frame</li>
+<li>#21: State is not consistent between the client and the server</li>
+<li>#22: On a fresh install of Win7, with only IE9 installed and no chrome/firefox clicking links crashes the app</li>
+<li>#13: Make the toolbar menu appear for left and right menu clicks</li>
+<li>#16: Sign the application with a strong name, so that people don't get a scary message about an unidentified publisher</li>
+<li>#20: Notifications do not open the browser when clicked;</li>
+<li>Removed unnecessary intermediate software update dialog.</li>
+</ul>
+
+<h1>Troupe for Windows version 0.9.6</h1>
+<ul>
+<li> still need to fix loggout properly</li>
+<li> installer autostart fixed</li>
+<li> multi instance fixed</li>
+<li> extra logging</li>
+</ul>
